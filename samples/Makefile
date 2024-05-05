@@ -2,7 +2,7 @@ TARGET = exe
 LIBS = -lm
 CC = g++
 CFLAGS = -g -Wall
-ROOT=/home/niclas/egna_projs/plugin_framework
+ROOT = $(shell pwd)
 
 .PHONY: default all clean
 
@@ -21,7 +21,7 @@ HEADERS = $(wildcard *.h)
 .PRECIOUS: $(TARGET) $(OBJECTS)
 
 exe:
-	$(CC) main.cpp -Wall $(LIBS) -I./ -g -o exe -lplugin1 -L$(ROOT) -Wl,-rpath=$(ROOT)
+	$(CC) main.cpp -Wall $(LIBS) -I./ -I../ -g -o exe -lplugin1 -L$(ROOT) -Wl,-rpath=$(ROOT)
 
 lib1:
 	$(CC) $(ROOT)/plugin1/plugin1.cpp $(ROOT)/plugin1/plugin.c -o $(ROOT)/libplugin1.so -fPIC -shared -I../ -I./
